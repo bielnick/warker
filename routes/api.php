@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CidadeController;
+use App\Http\Controllers\gasStationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/cidade/{id}', [CidadeController::class, 'getAllGasStations']);
+Route::get('/cidades', [CidadeController::class, 'getCities']);
+Route::get('/posto/{id}', [gasStationsController::class, 'getGasStationById']);
+
+Route::post('/cidade/', [CidadeController::class, 'setGasStation']);
+Route::put('/posto/', [gasStationsController::class, 'editGasStation']);
+
+Route::delete('/posto/{id}', [gasStationsController::class, 'deleteGasStation']);
